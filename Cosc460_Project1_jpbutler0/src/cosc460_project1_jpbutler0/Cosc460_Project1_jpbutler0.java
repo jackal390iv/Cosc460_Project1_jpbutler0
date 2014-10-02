@@ -20,8 +20,11 @@ public class Cosc460_Project1_jpbutler0 {
 
     }
 
-    @SuppressWarnings("empty-statement")
     public Cosc460_Project1_jpbutler0() {
+        run();
+    }
+
+    public void run() {
 
         try {
             Scanner input = new Scanner(System.in);
@@ -36,36 +39,41 @@ public class Cosc460_Project1_jpbutler0 {
                 System.out.println("Plese enter the distination where you wish to copy the file to: ");
                 goingTo = input.nextLine();
 
-                System.out.println("from: " + from + " goingTo: " + goingTo);
-
+                /*from = "C:\\Users\\Reaper\\Desktop\\a\\this.txt";
+                 goingTo = "C:\\Users\\Reaper\\Desktop\\b\\this.txt";
+                 //System.out.println("from: " + from + " goingTo: " + goingTo);*/
                 copyFile = new File(from);
                 if (!(copyFile.exists())) {
                     System.out.println("I'm sorry, but your file pathing was incorect; please try again.");
+                    run();
                     break;
                 }
 
                 goingToFile = new File(goingTo);
                 if (goingToFile.exists()) {
                     System.out.println("I'm sorry, but your file already exists in the location you wish to copy it to; please try again.");
+                    run();
                     break;
                 }
 
                 if (!(copyFile.canRead())) {
                     System.out.println("I'm sorry, but the file you wish to copy is unreadable; please try again.");
+                    run();
                     break;
                 }
 
                 goingToFile.createNewFile();
 
-                if (goingToFile.getFreeSpace() < copyFile.getTotalSpace()) {
-                    System.out.println("I'm sorry, but there is not enough space to copy your file; please try again.");
-                    goingToFile.delete();
-                    break;
-                }
-
+                /*if (goingToFile.getFreeSpace() < copyFile.getTotalSpace()) {
+                 System.out.println("I'm sorry, but there is not enough space to copy your file; please try again.");
+                 goingToFile.delete();
+                 run();
+                 break;
+                 }*/
                 if (!(goingToFile.canWrite())) {
                     System.out.println("I'm sorry, but the file you wish to create is un-writeable; please try again.");
                     goingToFile.delete();
+                    run();
                     break;
                 }
 
@@ -77,7 +85,7 @@ public class Cosc460_Project1_jpbutler0 {
                     writer.newLine();
                 }
                 writer.close();
-                
+
                 System.out.println("Your file has been copied sucessfully!");
 
             } while (true);
@@ -88,4 +96,5 @@ public class Cosc460_Project1_jpbutler0 {
             //ex.printStackTrace();*/
         }
     }
+
 }
