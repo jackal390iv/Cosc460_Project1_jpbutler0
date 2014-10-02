@@ -2,7 +2,6 @@ package cosc460_project1_jpbutler0;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 
@@ -26,23 +25,21 @@ public class Cosc460_Project1_jpbutler0 {
 
     public void run() {
 
-        try {
-            Scanner input = new Scanner(System.in);
-            String from;
-            String goingTo;
-            File copyFile;
-            File goingToFile;
-            do {
+        Scanner input = new Scanner(System.in);
+        String from;
+        String goingTo;
+        File copyFile;
+        File goingToFile;
+        do {
+            try {
                 System.out.println("Please enter the location of the file you wish to copy: ");
                 from = input.nextLine();
 
                 System.out.println("Plese enter the distination where you wish to copy the file to: ");
                 goingTo = input.nextLine();
 
-                /*from = "C:\\Users\\Reaper\\Desktop\\a\\this.txt";
-                 goingTo = "C:\\Users\\Reaper\\Desktop\\b\\this.txt";
-                 //System.out.println("from: " + from + " goingTo: " + goingTo);*/
                 copyFile = new File(from);
+
                 if (!(copyFile.exists())) {
                     System.out.println("I'm sorry, but your file pathing was incorect; please try again.");
                     run();
@@ -88,13 +85,14 @@ public class Cosc460_Project1_jpbutler0 {
 
                 System.out.println("Your file has been copied sucessfully!");
 
-            } while (true);
-        } catch (Exception ex) {
-            System.out.println("Cause: " + ex.getCause());
-            System.out.println("Message: " + ex.getMessage());
-            System.out.println("Local Message: " + ex.getLocalizedMessage());
-            //ex.printStackTrace();*/
-        }
+            } catch (Exception ex) {
+                System.out.println("Cause: " + ex.getCause());
+                System.out.println("Message: " + ex.getMessage());
+                System.out.println("Local Message: " + ex.getLocalizedMessage());
+                //ex.printStackTrace();*/
+                run();
+                break;
+            }
+        } while (true);
     }
-
 }
